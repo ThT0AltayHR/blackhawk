@@ -1,0 +1,1 @@
+- [BlackHawk dağıtımı](blackhawk-release.md) — Paket adı `blackhawk`; yayın doğrulaması resmi PyPI simple indeksinden yapılmalı.
