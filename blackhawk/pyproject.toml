@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "blackhawk"
-version = "0.1.0"
+version = "0.1.1"
 description = "Etik ve kamuya açık kaynaklarla çalışan Türkçe OSINT izleme terminali"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -32,9 +32,9 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/blackhawk-osint/blackhawk"
-Documentation = "https://github.com/blackhawk-osint/blackhawk#readme"
-Source = "https://github.com/blackhawk-osint/blackhawk"
+Homepage = "https://github.com/ThT0AltayHR/blackhawk"
+Documentation = "https://github.com/ThT0AltayHR/blackhawk#readme"
+Source = "https://github.com/ThT0AltayHR/blackhawk"
 
 [project.scripts]
 blackhawk = "blackhawk.cli:main"
