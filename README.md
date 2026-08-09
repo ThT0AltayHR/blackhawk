@@ -1,4 +1,7 @@
 # BLACKHAWK
+https://github.com/ThT0AltayHR/blackhawk.git
+https://pypi.org/project/blackhawk/
+
 
 ## Kamu Kaynaklı İstihbarat ve İzleme Terminali
 
