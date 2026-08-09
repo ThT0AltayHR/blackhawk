@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blackhawk"
+version = "0.1.0"
+description = "Etik ve kamuya açık kaynaklarla çalışan Türkçe OSINT izleme terminali"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "BlackHawk Community" }]
+keywords = ["osint", "public-data", "monitoring", "tui", "intelligence"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+  "Programming Language :: Python :: 3",
+  "Topic :: Security",
+]
+dependencies = [
+  "rich>=13.7",
+  "textual>=0.60",
+]
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.5",
+  "pytest>=8",
+  "twine>=6",
+]
+
+[project.urls]
+Homepage = "https://github.com/blackhawk-osint/blackhawk"
+Documentation = "https://github.com/blackhawk-osint/blackhawk#readme"
+Source = "https://github.com/blackhawk-osint/blackhawk"
+
+[project.scripts]
+blackhawk = "blackhawk.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["blackhawk*"]
+
+[tool.setuptools.package-data]
+blackhawk = ["data/*.json", "data/*.txt", "templates/*.html"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
