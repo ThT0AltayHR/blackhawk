@@ -1,0 +1,196 @@
+BLACKHAWK
+KAMU KAYNAKLI İSTİHBARAT VE İZLEME TERMİNALİ
+
+Python tabanlı, Termux ve masaüstü uyumlu, açık kaynaklı, profesyonel bir terminal aracı geliştir. Bu araç yalnızca kamuya açık verilerle çalışan, yetkili ve etik kullanıma uygun bir istihbarat/toplama/izleme platformu olsun. İzinsiz erişim, özel hesaplara girme, kimlik bilgisi toplama, doxxing, taciz, gizli veri çıkarma, güvenlik aşımı ve yasa dışı kullanım kesin olarak engellensin.
+
+İLK KURAL:
+Herhangi bir geliştirme, repo oluşturma, paketleme, yayınlama veya kod yazma işleminden önce kullanıcıdan güvenli biçimde token/secret iste. Token gelmeden ilerleme. Tokeni kod içinde yazma, loglama, ekrana basma veya dosyaya düz metin kaydetme. GitHub token, PyPI token ve gerekiyorsa diğer secret’lar .env / Replit Secret üzerinden alınsın.
+
+AMAÇ:
+BlackHawk; kamuya açık kaynaklardan hedeflerle ilgili bağlantıları, değişiklikleri, zaman çizelgesini, ilişki ağını, kaynak güvenini ve hareketlilik sinyallerini toplayan, birleştiren ve profesyonel raporlayan bir yerel terminal uygulaması olsun. Kişi, kurum, alan adı, kullanıcı adı, forum, sosyal hesap veya kamuya açık URL gibi hedefleri desteklesin. Araç “kim bu” diye tahmin satmasın; kaynaklı gözlem, korelasyon ve güven puanı üretsin.
+
+ARAYÜZ:
+Komut satırı yazdıran klasik CLI değil, OpenAI Codex benzeri satır tabanlı bir TUI olsun. Menü, panel, yardım, seçim ve log akışı tek ekranda görülsün. İşlemler tamamen arayüzden yönetilsin, kullanıcıya `--komut` tarzı argümanlar zorunlu olmasın. Ok tuşlarıyla gezinme olsun: ↑ ↓ ← →, Enter, Esc, Tab, geri dön, yardım aç, panel değiştir. Terminalde modern ama temiz bir akış oluştur. Kod/komut bölgesi, durum paneli, hedef paneli, canlı log paneli, yardım paneli ve özet paneli ayrı görünsün.
+
+MENÜ:
+Ana menü çok şık ve profesyonel olsun:
+- Yeni Hedef
+- Çoklu Hedef
+- Canlı İzleme
+- Kaynak Keşfi
+- Zaman Çizelgesi
+- İlişki Grafiği
+- Kanıtlar
+- Raporlar
+- Help
+- Ayarlar
+- Güvenlik / TCK
+- Çıkış
+
+HELP MENÜSÜ:
+Help ekranında kısayollar, menü açıklamaları, modlar, güvenlik sınırları, log renkleri, export seçenekleri ve izleme süreleri bulunsun.
+
+TOKEN AKIŞI:
+Program açılır açılmaz önce güvenli token girişi istesin. Kullanıcı hangi yayın/bağlantı adımı yapmak istiyorsa önce secret doğrulaması yapılsın. Token doğrulanmadan repository oluşturma, push, release, PyPI yayını veya dış servislere bağlanma başlamasın.
+
+YAPI:
+- core/
+- ui/
+- agents/
+- connectors/
+- monitoring/
+- intelligence/
+- evidence/
+- reports/
+- packaging/
+- security/
+- tests/
+
+Modüler mimari kur. Tek dosyada her şeyi toplama. Her modül net sorumluluk taşısın.
+
+ÇOKLU HEDEF:
+Aynı anda birden fazla hedef izlenebilsin. Örnek olarak 1, 5, 20 veya daha fazla hedef desteklensin. Maksimum eşzamanlı hedef sayısı ayarlardan değiştirilebilsin. Varsayılan düşük ama yükseltilebilir olsun. Sistem aynı anda kaç hedef izleyebildiğini açıkça göstersin:
+- aktif hedef sayısı
+- kuyruktaki hedef sayısı
+- durmuş hedef sayısı
+- tamamlanan hedef sayısı
+
+İZLEME MOTORU:
+Hedefleri kamuya açık kaynaklardan periyodik tarasın. Yeni paylaşım, yeni referans, tarih değişimi, profil güncellemesi, bağlantı eklenmesi, içerik silinmesi, görünürlük değişikliği ve ilişki sinyali gibi olayları yakalasın. Her olayın kaynağı, zamanı, tipi ve güven puanı olsun. Gerçek veri yoksa “bulunamadı” de, uydurma üretme.
+
+ZEKA MOTORU:
+Hedefe dair bulguları birleştiren güçlü bir korelasyon motoru ekle:
+- kaynak birleşimi
+- alias eşleme
+- URL eşleme
+- zaman çizelgesi eşleştirme
+- tekrar eden sinyalleri temizleme
+- confidence scoring
+- çelişki tespiti
+- bağımsız kaynak doğrulama
+
+Bu motor yanlış kesinlik üretmesin. “Muhtemel”, “doğrulanmış”, “zayıf sinyal”, “çelişkili”, “tek kaynak” gibi net sınıflar kullansın.
+
+LOG SİSTEMİ:
+Loglar çok şık, kalın, renkli ve okunaklı olsun. Her log satırı timestamp, modül adı, severity, kısa açıklama, hedef adı ve güven seviyesi içersin. Örnek kategoriler:
+- AI-INFO
+- AI-WARNING
+- AI-CRITICAL
+- AI-SUCCESS
+- AI-GHOST
+- AI-WOLF
+- AI-TRACE
+- AI-VERIFY
+- AI-SHIELD
+
+ASCII/Unicode ikonlar doğru ve temiz olsun. Terminalde bozulmayan, gerçek görünümlü semboller kullan. Loglar hem kısa hem detaylı modu desteklesin.
+
+TÜRK CEZA KANUNU / GÜVENLİK BÖLÜMÜ:
+Menüde ayrı bir “Güvenlik / TCK” bölümü olsun. Burada kısa ve net şekilde:
+- yetkisiz erişim yasağı
+- kişisel veri koruması
+- taciz ve takip yasağı
+- telif ve lisans uyumu
+- kamuya açık veri sınırı
+- etik kullanım ilkeleri
+gösterilsin. Bu bölüm çalışmanın sınırlarını açıkça belirtmeli.
+
+RAPORLAMA:
+HTML, JSON ve TXT rapor üret:
+- hedef özeti
+- zaman çizelgesi
+- kaynak listesi
+- event listesi
+- kanıtlar
+- ilişki grafiği
+- confidence tablosu
+- açık uçlu notlar
+- güvenlik uyarıları
+- çalışma süresi
+- başarı/başarısız görevler
+
+HTML rapor çok profesyonel olsun, dashboard hissi versin, dark theme, kartlar, timeline, badge’ler, filtreler ve arama alanı olsun. Raporlar yerel olarak saklansın.
+
+KAYIT ADLANDIRMA:
+Hedef adı ya da URL’den temiz dosya adı üret:
+@user -> user
+site.com -> site
+forum/xxx -> xxx
+Dosya çıktıları:
+- .html
+- .json
+- .txt
+
+Maksimum düzen ve otomatik klasörleme olsun.
+
+SÜRELER:
+24, 48, 72, 200, 265, 300 saat ve custom süreler desteklensin. İzleme duraklatılsın, devam ettirilsin, yeniden başlatılsın. Uzun süreli görevlerde kalıcı session recovery olsun.
+
+REPO VE YAYIN:
+Token doğrulandıktan sonra:
+1. temiz bir git repo oluştur
+2. proje dosyalarını üret
+3. testleri çalıştır
+4. hataları düzelt
+5. sürüm notu hazırla
+6. GitHub’a push için hazırla
+7. paketleme yap
+8. PyPI yayın paketini hazırla
+9. hata varsa düzeltip yeniden dene
+10. yayın sonrası kullanıcıya yalnızca şu sonucu ver:
+   “pip install blackhawk”
+
+Ancak PyPI’ye gönderme yetkisi ve paket kimliği kullanıcı secret’larına bağlı olsun. Başarısızsa açık ve güvenli hata ver, uydurma başarı mesajı verme.
+
+SÜRÜM VE RESMİLEŞME:
+Projede semantik versiyonlama kullan. Bir güvenlik notu gerekiyorsa “CVE-ready advisory template” üret, ama gerçek CVE numarası uydurma veya kendine atama yapma. Resmiyet için changelog, release notes, README, usage guide, help ve security policy dosyaları oluştur.
+
+EK ÖZELLİKLER:
+- çoklu kaynak tarama
+- favori hedef listesi
+- hedef gruplama
+- etiketleme
+- not alma
+- sıcak/soğuk hedef işaretleme
+- session resume
+- cache
+- deduplication
+- rate limit uyumu
+- offline mod
+- demo mod
+- sandbox test modu
+- export/import
+- tema ayarı
+- terminal boyutuna uyum
+- erişilebilirlik
+- Türkçe arayüz
+- hızlı arama
+- bağlamlı yardım
+- gizli veri maskesi
+
+GÜVENLİK:
+Secret masking, input validation, path sanitization, HTML escaping, parameterized queries, secure file handling, audit log ve permission kontrolü zorunlu olsun. “Bulduk” denmeden önce gerçekten kaynak teyidi olsun. Herhangi bir iddia için kaynak yoksa bunu belirt.
+
+GELİŞTİRME SIRASI:
+Önce mimariyi çıkar, sonra UI iskeleti, sonra token akışı, sonra hedef motoru, sonra log ve help menüsü, sonra çoklu hedef izleme, sonra korelasyon ve güven puanı, sonra raporlar, sonra testler, sonra packaging ve yayın.
+
+KODLAMAYA BAŞLAMADAN ÖNCE:
+- tokeni güvenli şekilde iste
+- yapı taşlarını listele
+- modül planını çıkar
+- menü akışını kur
+- sonra uygulamayı inşa et
+
+HEDEF:
+BlackHawk; kamuya açık verilerde çalışan, profesyonel, modüler, güvenli, çok hedefli, güçlü raporlama yapan, TUI tabanlı bir istihbarat ve izleme aracıdır. Basit bir script değil; gerçek bir terminal platformu olsun.
+
+Bu aracı geliştirirken askeri ve istihbarat düzeyinde çok kapsamlı araştırmalar yapıp hedef hakkındaki her şeyi birleştirebilme ve çaprazlama istihbarat kullanabilme özellikleri ekle yani bildiğin bir istihbaratçı gibi davranıp her şeyi bulabilsin bu şekilde özellikle her şeyden sonra rapor verecek ya yani tabii aracı mimarisine gövdesini ince ayrıntısına kadar düşünmeni istiyorum normalde bana sormanı isterdim ama sen düşün aracın html json txt gibi rapor verme özelliği var yani her rapordan sonra rapor verme özelliği var yani her taramadan sonra bu raporlar çok okunaklı tamamen Türkçe ve güzel olsun özellikle html raporunu üst düzey istihare şekilde tasarla koyu tema kullan ve etkileşimli grafiksel şeyler de ekle bulgular bölümünü de ekle hedef hakkında neler izlendi neler tespit edildi linkiler ekran görüntüleri vesaire dediğim gibi araç bir platformu ekran görüntüsü bile alabilir her şeyi yapabilir sen sadece bunu bil tıpkı bir insan gibi davranacak bir sistem olacak yani bu çok büyük bir sistem olacak ve şunu tekrardan söylemek isterim pypi kütüphanesine yüklemeden durma yani depoyu gönderdikten sonra kütüphaneye yüklemeden durma ne zaman ki pip ile aracı yükleyebildin o zaman tamamdır problem yok onun dışında ilk başta token'imi iste ve ondan sonra işe başla
+
+
+şimdi aracı YAPARKEN SANA VERMİŞ OLDUĞUM EKRAN GÖRÜNTÜSÜNDE İNCELE VE BU EKRAN GÖRÜNTÜSÜNÜ İYİCE DENETLE TERMİNAL ARAYÜZÜ O ŞEKİLDE OLACAK ONUN DIŞINDA 
+TERMİNAL ARİZON ŞEKİLDE OLACAK VE ONUN DIŞINDA SANA VERMİŞ OLDUĞUM EKRAN GÖRÜNTÜSÜ GİT DEPOSUNDA README DOSYASINA DAHİL EDİLECEK BUNUN DIŞINDA ARAÇ İLE ALAKALI 7 ADET YAPAY ZEKA GÖRSELİ OLUŞTURACAKSIN ARACIN NE İŞE YARADIĞINA DAİR ARACIN NASIL KULLANILABİLECEĞİNE DAİR VE AYNI ZAMANDA DEPONUN BİLİYORSUN BAZEN GİT HUB DEPOLARINA BAKTIĞIMIZDA DEPOLARIN HEMEN ÜSTÜNDE YANİ HEMEN ŞEYİNDE BİR GÖRSEL OLUYOR BİZİM DEPOMUZA BİR GÖRSEL OLSUN YANİ DEPOMUZUN BİR GÖRSELİ OLSUN VE AÇIKLAMASI OLSUN AMA DEDİĞİM GİBİ PİP KÜTÜPHANESİNE YÜKLEMEDEN DURMA PİP HATA VERİRSE HATALARI DÜZELT VE TEKRARDAN GÖNDER NE ZAMAN Kİ ARAÇ SORUNSUZ BİR ŞEKİLDE ÇALIŞTI PİPİ KÜTÜPHANESİNE YÜKLENDİ O ZAMAN BİR PROBLEM YOK DEMEKTİR 
+BU DEDİKLERİMİ EKSİKSİZ BİR ŞEKİLDE YAP ARACI ARAYÜZ TASARIMLARINI HER ŞEYİNE ÇOK DİKKAT ET VE DEDİĞİM GİBİ ARACI ASKERİ VE İSTİHBARİ DÜZEYDE TUT ARACA BİR CVE NUMARASI EKLE AYNI ZAMANDA ARACI RESMİLEŞTİRMEK İÇİN ELİNDEN GELENİ YAP ARAÇ BİR İNSAN GİBİ DÜŞÜNEBİLSİN VE HTML JSON TXT RAPORLARI TAMAMEN OKUNAKLI TÜRKÇE VE PREMİUM HİSSİYATI OLSUN ÖZELLİKLE HTML RAPORUNA ÇOK DİKKAT ET HTML RAPORU KOYACAĞIM AMA GRAFİKLERDEN VE HEDEF HAKKINDAKİ VEYA KURUM HAKKINDAKİ EKRAN GÖRÜNTÜLERİNDEN AYNI ZAMANDA KAÇ SAAT İZLENMİŞ GİBİSİNDEN PEK ÇOK ÖZELLİĞE SAHİP OLSUN 
+
+AYNI ZAMANDA HEDEFİ İZLEMEK İÇİN SÜRE BELİRLENEBİLECEK BUNU DA SÖYLEMEK İSTERİM YANİ HAZIR SÜRELER 1 SAAT 2 SAAT 10 DAKİKA 5 DAKİKA BİR DAKİKA 3 SAAT 20 SAAT 50 SAAT GİBİ ONUN DIŞINDA MANUEL SÜRE BELİRLEME İŞTE 200 SAAT 300 SAAT GİBİ ONUN DIŞINDA RİSK SEVİYESİ OTOMATİK OLARAK BELİRLENSİN 
+BUNLARIN HEPSİNİ EKSİKSİZ BİR ŞEKİLDE YAP SANA ATTIĞIM EKRAN GÖRÜNTÜSÜNÜ İNCELE ONUN DIŞINDA ÖNCELİKLE TOKENİ Mİ İSTE ONDAN SONRA ARACIMIZI TASARLAMAYA BAŞLA TASARLADIKTAN SONRA BİTİRDİKTEN SONRA ARACIMIZI TEST ET HATA VAR MI YOK MU HATALARSA HATAYI GİDER ONDAN SONRA DEPOYA GÖNDER VE PİPİ KÜTÜPHANESİNE YÜKLE ONDAN SONRA KESİNLİKLE YÜKLEMENİ İSTİYORUM HİÇBİR ŞEKİLDE BİR HATAYA KABUL ETMİYORUM PİP KÜTÜPHANESİNİ EKLEYECEK HER ŞEYİ EKSİKSİZ BİR ŞEKİLDE YAPACAKSIN VE ARACA PROFESYONEL BİR ŞEKİLDE TASARLAYACAKSIN TERMİNAL ARA YÜZÜ SANA GÖSTERMİŞ OLDUĞUMU GÖRSELİ SAĞ TARAFINDA BULUNAN ARAYÜZDE AYNI OLACAK GERÇEK BİR ŞAHİN KAFASI KULLANILACAK VE ÖZEL LOG SATIRLARI OLACAK 
+YANİ BU SATIRLAR ÇOK FAZLA OLACAK VE BU ARACI YAPMAK İÇİN GEREKLİ OLAN HER ŞEYİ ÖNCELİKLE DEVASA BİR ŞEKİLDE KENDİ ÇAPINDA KENDİ ALANINDA ÇOK DEVASA BİR ŞEKİLDE PLANLA ONDAN SONRA ARACI YAPMAYA BAŞLA YANİ BU ARACI PLANLADIĞIMDA ORTALAMA 200 İLE 150 DOSYA OLABİLECEĞİNİ DÜŞÜNDÜM ORTALAMA AMA SANA BIRAKIYORUM BU KISMINI DEDİĞİM GİBİ ARACIN HELP MENÜSÜ OLSUN AYRICA TÜRK CEZA KANUNLARININ BU ARACI İLGİLENDİREN TÜM KANUNLARI KANUNLAR BÖLÜMÜNDE BULUNSUN VE ÇOK BÜYÜK BİR KANUN KİTABI YAZILISINDAN ARACIN İÇERİSİNDE ONUN DIŞINDA HELP MENÜSÜ ÇOK FAZLA BÜYÜK OLSUN ARACIN NASIL KULLANILABİLECEĞİ HAKKINDA YANİ MENÜLER BU ŞEKİLDEDİR ŞİMDİ ÖNCELİKLE TOKENİ Mİ İSTE ONDAN SONRA İŞE BAŞLA BU SÖYLEDİKLERİMİ EKSİKSİZ BİR ŞEKİLDE YAP
