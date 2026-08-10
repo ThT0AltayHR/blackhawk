@@ -1,15 +1,12 @@
 # Değişiklik Günlüğü
 
-## 0.1.1 - Dağıtım metadata düzeltmesi
+## 1.0.0 — Stable
 
-- PyPI ve GitHub bağlantıları gerçek depo adresine güncellendi.
-- Kurulum adı `blackhawk` olarak doğrulandı.
-
-## 0.1.0 - İlk güvenli temel
-
-- Türkçe TUI iskeleti
-- Demo ve offline kaynak gözlemi
-- Kaynaklı korelasyon ve güven sınıfları
-- HTML, JSON ve TXT raporlama
-- TCK / etik kullanım görünümü
-- Güvenli dosya adlandırma ve audit log
+- Textual menü seçimindeki `Label.renderable`, `Label.plain` ve `ListItem.label`
+  uyumsuzlukları kaldırıldı; menüler sabit kimliklerle çalışıyor.
+- Demo modu kaldırıldı; sahte hedef ve sahte bulgu üretilmiyor.
+- Termux ve minimal terminal kurulumları için ANSI fallback eklendi.
+- İlk kullanım sözleşmesi, büyük harf/rakam token doğrulaması ve yerel profil kasası eklendi.
+- JSON, TXT, HTML ve bağımlılıksız PDF raporları eklendi.
+- Türkçe yardım, TCK/etik sınırlar, olay analizi taslağı, ajan durumu ve iletişim ekranları eklendi.
+- PyPI/GitHub bağlantıları, TurkHackTeam topluluğu ve geliştirici Telegram adresi metadata’ya eklendi.

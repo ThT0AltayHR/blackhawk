@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import textwrap
 from datetime import datetime, timezone
 from html import escape
 from pathlib import Path
@@ -18,6 +19,7 @@ class ReportWriter:
             ".json": self.write_json(session, target),
             ".txt": self.write_txt(session, target),
             ".html": self.write_html(session, target),
+            ".pdf": self.write_pdf(session, target),
         }
 
     def write_json(self, session: Session, target: str) -> Path:
@@ -91,4 +93,84 @@ table{{width:100%;border-collapse:collapse;font-size:13px}}td{{border-bottom:1px
 <footer>Bu rapor yalnızca kamuya açık ve yetkili kullanım içindir. Kaynaksız iddia üretilmemiştir.</footer>
 </main></body></html>"""
         path.write_text(html, encoding="utf-8")
+        return path
+
+    def write_pdf(self, session: Session, target: str) -> Path:
+        """Create a dependency-free, readable PDF for Termux and minimal installs."""
+        path = safe_report_path(self.directory, target, ".pdf")
+        lines = [
+            "BLACKHAWK — KAMU KAYNAKLI İZLEME RAPORU",
+            f"Hedef: {target}",
+            f"Üretim: {datetime.now(timezone.utc).isoformat()}",
+            f"Durum: {session.status}",
+            f"Operatör: {session.operator_name or 'belirtilmedi'}",
+            "",
+            "GÜVENLİK NOTU",
+            "Yalnızca yetkili ve kamuya açık kaynaklar. Bu belge hukuki danışmanlık değildir.",
+            "",
+            "BULGULAR",
+        ]
+        for item in session.observations:
+            lines.extend(
+                [
+                    f"[{item.classification}] %{int(item.confidence * 100)} {item.source_title}",
+                    f"Kaynak: {item.source_url}",
+                    f"Özet: {item.summary}",
+                    "",
+                ]
+            )
+        if session.incident_analysis:
+            lines.extend(["OLAY ANALİZİ TASLAĞI", str(session.incident_analysis), ""])
+        lines.extend(["AUDIT LOG"])
+        for entry in session.logs[-30:]:
+            lines.append(f"{entry.get('timestamp', '-')} {entry.get('level', '-')} {entry.get('message', '-')}")
+
+        wrapped: list[str] = []
+        for line in lines:
+            wrapped.extend(textwrap.wrap(line, width=92) or [""])
+        pages = [wrapped[index:index + 46] for index in range(0, len(wrapped), 46)] or [[""]]
+        objects: list[bytes] = []
+
+        def add(data: str) -> int:
+            objects.append(data.encode("latin-1", errors="replace"))
+            return len(objects)
+
+        catalog = add("<< /Type /Catalog /Pages 2 0 R >>")
+        pages_id = add("")
+        font_id = add("<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>")
+        page_ids: list[int] = []
+        content_ids: list[int] = []
+        for page_lines in pages:
+            content = ["BT", "/F1 9 Tf", "42 760 Td", "12 TL"]
+            for line in page_lines:
+                safe = line.replace("\\", "\\\\").replace("(", "\\(").replace(")", "\\)")
+                content.append(f"({safe}) Tj T*")
+            content.append("ET")
+            content_id = add(f"<< /Length {len(chr(10).join(content).encode('latin-1', errors='replace'))} >>\nstream\n"
+                             + "\n".join(content) + "\nendstream")
+            content_ids.append(content_id)
+            page_ids.append(add(""))
+        kids = " ".join(f"{page_id} 0 R" for page_id in page_ids)
+        objects[pages_id - 1] = f"<< /Type /Pages /Kids [{kids}] /Count {len(page_ids)} >>".encode()
+        for page_id, content_id in zip(page_ids, content_ids):
+            objects[page_id - 1] = (
+                f"<< /Type /Page /Parent {pages_id} 0 R /MediaBox [0 0 612 792] "
+                f"/Resources << /Font << /F1 {font_id} 0 R >> >> /Contents {content_id} 0 R >>"
+            ).encode()
+        pdf = bytearray(b"%PDF-1.4\n%\xe2\xe3\xcf\xd3\n")
+        offsets = [0]
+        for index, obj in enumerate(objects, 1):
+            offsets.append(len(pdf))
+            pdf.extend(f"{index} 0 obj\n".encode())
+            pdf.extend(obj)
+            pdf.extend(b"\nendobj\n")
+        xref = len(pdf)
+        pdf.extend(f"xref\n0 {len(objects) + 1}\n0000000000 65535 f \n".encode())
+        for offset in offsets[1:]:
+            pdf.extend(f"{offset:010d} 00000 n \n".encode())
+        pdf.extend(
+            f"trailer\n<< /Size {len(objects) + 1} /Root {catalog} 0 R >>\n"
+            f"startxref\n{xref}\n%%EOF\n".encode()
+        )
+        path.write_bytes(pdf)
         return path

@@ -1,32 +1,24 @@
 # Güvenlik Politikası
 
-## Kapsam
+BlackHawk yalnızca açıkça yetkilendirilmiş kamu verilerinin etik olarak
+düzenlenmesi, kaynaklandırılması ve raporlanması içindir.
 
-BlackHawk yalnızca kamuya açık verilerin, yetkili araştırma kapsamının ve
-etik izleme süreçlerinin belgelenmesi için tasarlanmıştır.
-
-Desteklenmeyen davranışlar:
+## Desteklenmeyen davranışlar
 
 - özel hesaplara erişim veya kimlik doğrulama atlatma,
-- parola, token veya kişisel veri toplama,
+- parola, token veya gereksiz kişisel veri toplama,
 - doxxing, taciz, gizli takip veya hedefli zarar,
-- rate limit ve robots kurallarını aşma,
-- güvenlik açığı sömürme.
+- rate limit, robots veya servis erişim kurallarını aşma,
+- güvenlik açığı sömürme veya saldırı otomasyonu,
+- kaynaksız suç isnadı ya da bir kişiyi otomatik olarak riskli ilan etme.
 
 ## Bildirim
 
-Bir güvenlik sorunu bulursanız ayrıntıları kamuya açık bir issue olarak paylaşmak
-yerine proje sahibine özel kanaldan bildirin. Token, kişisel veri veya canlı
-hedef bilgisi göndermeyin.
+Bir güvenlik sorunu bulursanız kamuya açık issue'ya canlı token, parola, kişisel
+veri veya hedef bilgisi koymayın. Geliştiriciye Telegram **@AltayHR** üzerinden
+minimum gerekli teknik ayrıntıyla ulaşın.
 
-## CVE-ready advisory template
+## Hukuki not
 
-> Bu bölüm bir CVE numarası değildir. Gerçek bir CVE numarası yalnızca yetkili
-> CVE Numbering Authority tarafından atanabilir.
-
-- Etkilenen sürüm:
-- Etki:
-- Yeniden üretim özeti:
-- Azaltma önerisi:
-- Düzeltme sürümü:
-- Koordinasyon tarihi:
+Bu araç hukuki danışmanlık değildir. Güncel TCK, KVKK ve diğer mevzuatın resmi
+metinleri geçerlidir. Acil riskte 112 ve yetkili resmi kanalları kullanın.

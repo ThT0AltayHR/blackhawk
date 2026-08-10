@@ -4,19 +4,23 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "blackhawk"
-version = "0.1.1"
-description = "Etik ve kamuya açık kaynaklarla çalışan Türkçe OSINT izleme terminali"
+version = "1.0.0"
+description = "Yetkili kamu kaynakları için etik Türkçe OSINT izleme ve kanıt raporlama terminali"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
-authors = [{ name = "BlackHawk Community" }]
-keywords = ["osint", "public-data", "monitoring", "tui", "intelligence"]
+authors = [{ name = "ThT0AltayHR" }]
+keywords = [
+  "osint", "open-source-intelligence", "public-sources", "evidence",
+  "monitoring", "terminal", "termux", "textual", "turkhackteam"
+]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 5 - Production/Stable",
   "Environment :: Console",
   "Intended Audience :: Developers",
   "Intended Audience :: Information Technology",
   "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
   "Topic :: Security",
 ]
 dependencies = [
@@ -28,26 +32,28 @@ dependencies = [
 dev = [
   "build>=1.5",
   "pytest>=8",
+  "ruff>=0.8",
   "twine>=6",
 ]
 
 [project.urls]
 Homepage = "https://github.com/ThT0AltayHR/blackhawk"
 Documentation = "https://github.com/ThT0AltayHR/blackhawk#readme"
-Source = "https://github.com/ThT0AltayHR/blackhawk"
+Repository = "https://github.com/ThT0AltayHR/blackhawk"
+PyPI = "https://pypi.org/project/blackhawk/"
+Community = "https://turkhackteam.org/"
 
 [project.scripts]
 blackhawk = "blackhawk.cli:main"
 
-[tool.setuptools.packages.find]
-include = ["blackhawk*"]
+[tool.setuptools]
+packages = ["blackhawk", "blackhawk.assets"]
 
 [tool.setuptools.package-data]
-blackhawk = ["data/*.json", "data/*.txt", "templates/*.html"]
+blackhawk = ["assets/*.png"]
 
-[tool.ruff]
-line-length = 100
-target-version = "py310"
+[tool.setuptools.data-files]
+"share/licenses/blackhawk" = ["blackhawk/LICENSE"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["blackhawk/tests"]

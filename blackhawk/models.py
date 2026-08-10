@@ -54,6 +54,11 @@ class Session:
     observations: list[Observation] = field(default_factory=list)
     logs: list[dict[str, Any]] = field(default_factory=list)
     notes: list[str] = field(default_factory=list)
+    operator_name: str = ""
+    operator_age: int | None = None
+    operator_gender: str = ""
+    incident: str = ""
+    incident_analysis: dict[str, Any] = field(default_factory=dict)
 
     @property
     def elapsed_minutes(self) -> int:
@@ -68,4 +73,9 @@ class Session:
             "observations": [item.to_dict() for item in self.observations],
             "logs": self.logs,
             "notes": self.notes,
+            "operator_name": self.operator_name,
+            "operator_age": self.operator_age,
+            "operator_gender": self.operator_gender,
+            "incident": self.incident,
+            "incident_analysis": self.incident_analysis,
         }

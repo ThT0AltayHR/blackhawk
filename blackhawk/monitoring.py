@@ -33,7 +33,6 @@ class MonitoringEngine:
     def run_once(
         self,
         session: Session,
-        demo: bool = False,
         on_log: Callable[[dict], None] | None = None,
     ) -> MonitorResult:
         observations: list[Observation] = []
@@ -44,7 +43,7 @@ class MonitoringEngine:
             if on_log:
                 on_log(session.logs[-1])
             try:
-                item = self._demo_observation(target) if demo else self.connector.observe(target.value)
+                item = self.connector.observe(target.value)
                 observations.append(item)
                 session.logs.append(
                     make_log("AI-VERIFY", "VERIFY", "Kaynak gözlemi kaydedildi", target.value, item.classification)
@@ -58,17 +57,3 @@ class MonitoringEngine:
         session.observations.extend(self.correlator.correlate(observations))
         session.status = "hazır" if not errors else "kısmi sonuç"
         return MonitorResult(observations=observations, errors=errors)
-
-    @staticmethod
-    def _demo_observation(target: Target) -> Observation:
-        return Observation(
-            target=target.value,
-            source_url=target.value if target.value.startswith("http") else "https://demo.blackhawk.local/public",
-            source_title="Demo kamu kaynağı",
-            kind="demo gözlemi",
-            summary="Bu kayıt yalnızca arayüz ve rapor akışını göstermek için üretilen demo verisidir.",
-            confidence=0.25,
-            classification="tek kaynak",
-            verified=False,
-            metadata={"demo": True},
-        )

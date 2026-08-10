@@ -1,0 +1,1 @@
+"""BlackHawk package assets."""
