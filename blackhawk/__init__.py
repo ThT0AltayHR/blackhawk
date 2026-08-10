@@ -1,6 +1,6 @@
 """BlackHawk: Termux uyumlu, etik kamu kaynağı izleme terminali."""
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 from .models import Observation, Session, Target
 

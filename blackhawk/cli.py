@@ -22,7 +22,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--target", action="append", default=[], help="Yetkili http/https URL'si; tekrar edilebilir")
     parser.add_argument("--duration", type=int, default=60, help="Oturum süresi (dakika)")
     parser.add_argument("--reports", default="reports", help="Rapor klasörü")
-    parser.add_argument("--ui", choices=("auto", "ansi", "textual"), default="auto", help="Arayüz seçimi")
+    parser.add_argument(
+        "--ui",
+        choices=("auto", "ansi", "textual"),
+        default="ansi",
+        help="Arayüz seçimi (varsayılan: tam ekran ANSI menü)",
+    )
     return parser
 
 
@@ -55,7 +60,7 @@ def main() -> int:
         except ValueError as exc:
             print(f"Hedef atlandı: {exc}", file=sys.stderr)
             return 2
-    if args.ui == "ansi" or (args.ui == "auto" and is_termux()):
+    if args.ui in {"auto", "ansi"}:
         from .terminal_ui import run_ansi
         return run_ansi(session, engine, args.reports)
     return _run_textual(session, args.reports)

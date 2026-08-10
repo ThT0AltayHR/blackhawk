@@ -15,8 +15,9 @@ blackhawk
 ```
 
 Uygulama artık oturum tokeni, PyPI tokeni, GitHub tokeni veya profil parolası
-istemez. Varsayılan Termux arayüzü bağımlılıksız ANSI menüsüdür. İsterseniz
-Textual arayüzünü ayrıca kurup `blackhawk --ui textual` ile deneyebilirsiniz.
+istemez. `blackhawk` komutu Termux'ta tam ekran, renkli ANSI kontrol merkezini
+doğrudan açar. Textual arayüzünü yalnızca `blackhawk --ui textual` ile
+isteğe bağlı olarak seçebilirsiniz.
 
 ## Kullanım
 
@@ -25,6 +26,14 @@ blackhawk --target https://example.com
 blackhawk --ui ansi
 blackhawk --help
 ```
+
+ANSI menüsünde:
+
+- `1` yetkili kaynak ekler
+- `2` canlı izlemeyi çalıştırır
+- `3` raporları üretir
+- `4` yardım ekranını açar
+- `q` çıkar
 
 Araç özel hesaplara giriş yapmaz, kimlik bilgisi içeren URL'leri reddeder ve
 yalnızca izinli/kamuya açık kaynaklar için kullanılmalıdır.

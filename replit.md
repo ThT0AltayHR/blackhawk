@@ -23,7 +23,7 @@ yerel olarak gözlemleyip raporlayan, oturum tokeni gerektirmeyen terminal arac�
 - Validation: Zod (`zod/v4`), `drizzle-zod`
 - API codegen: Orval (from OpenAPI spec)
 - Build: esbuild (CJS bundle)
-- CLI: Python 3.10+, bağımlılıksız ANSI varsayılanı; Textual isteğe bağlı
+- CLI: Python 3.10+, tam ekran ANSI varsayılanı; Textual isteğe bağlı
 
 ## Where things live
 
