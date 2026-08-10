@@ -1,7 +1,7 @@
-"""BlackHawk: etik, kamu kaynaklı izleme terminali."""
+"""BlackHawk: Termux uyumlu, etik kamu kaynağı izleme terminali."""
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
-from .models import Observation, Target, Session
+from .models import Observation, Session, Target
 
-__all__ = ["Observation", "Target", "Session", "__version__"]
+__all__ = ["Observation", "Session", "Target", "__version__"]

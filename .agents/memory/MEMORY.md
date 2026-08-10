@@ -1,1 +1,1 @@
-- [BlackHawk dağıtımı](blackhawk-release.md) — Paket adı `blackhawk`; yayın doğrulaması resmi PyPI simple indeksinden yapılmalı.
+- [Termux/Textual compatibility](termux-textual-compatibility.md) — Prefer lazy optional UI imports, ANSI fallback, and conservative Textual CSS.

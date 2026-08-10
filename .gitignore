@@ -5,6 +5,12 @@ dist
 tmp
 out-tsc
 *.tsbuildinfo
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+build/
+*.egg-info/
 .expo
 .expo-shared
 
@@ -47,13 +53,3 @@ Thumbs.db
 # Replit
 .cache/
 .local/
-
-# Python
-__pycache__/
-*.py[cod]
-*.egg-info/
-.pytest_cache/
-.venv/
-build/
-reports/
-.env
